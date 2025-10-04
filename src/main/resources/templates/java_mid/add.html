@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Roster</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <header>
+            <nav class="navbar navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" href="#">ITE204 - Morning (Java)</a>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container mt-4">
+            <main>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="text-center">Add New Student</h3>
+                        <form th:action="@{/java_mid/save}" method="post" th:object="${students}">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select class="form-select form-select-sm" th:field="*{gender}">
+                                    <option value="">Select your gender</option>
+                                    <option th:value="'Male'">Male</option>
+                                    <option th:value="'Female'">Female</option>
+                                    <option th:value="'Other'">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="idCard" class="form-label">ID Card</label>
+                                <input type="text" class="form-control" id="idCard" name="idCard" th:field="*{idCard}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" th:field="*{email}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="phone" name="phone" th:field="*{phone}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="major" class="form-label">Major</label>
+                                <input type="text" class="form-control" id="major" name="major" th:field="*{major}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="yearStudying" class="form-label">Year Studying</label>
+                                <input type="number" class="form-control" id="yearStudying" name="yearStudying" th:field="*{yearStudying}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="firstYear" class="form-label">First Year</label>
+                                <input type="number" class="form-control" id="firstYear" name="firstYear" th:field="*{firstYear}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endYear" class="form-label">End Year</label>
+                                <input type="number" class="form-control" id="endYear" name="endYear" th:field="*{endYear}" required> 
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Student</button>
+                            <a href="/java_mid" class="btn btn-secondary">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="container mt-4">
+               <p class="text-center text-muted">&copy; 2025 ITE204 - Morning (Java). All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
