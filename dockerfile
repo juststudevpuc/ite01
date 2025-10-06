@@ -1,14 +1,13 @@
-# 
-# Build stage
-#  
-FROM maven:3.9.4-eclipse-temurin-11 AS build
-COPY . .
+# Step 1: Use an official JDK image to build the app
+FROM maven:3.9.6-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
 RUN mvn clean package -DskipTests
 
-#
-# Package stage
-#
-FROM eclipse-temurin:11-jre-alpine
-COPY --from=build target/*.jar app.jar
+# Step 2: Run the app using a lightweight JDK image
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
